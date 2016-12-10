@@ -1,7 +1,28 @@
 package views;
 
-/**
- * Created by aniruddha on 12/10/16.
- */
-public class View {
+import spark.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class View {
+    private String templateName;
+    private Map<String, String> context = new HashMap<String, String>();
+
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        if (templateName.length() < 1) {
+            throw new IllegalArgumentException();
+        }
+        this.templateName = templateName;
+    }
+
+    public Map getContext() {
+        return context;
+    }
+
+    public abstract String render();
 }

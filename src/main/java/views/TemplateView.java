@@ -1,7 +1,12 @@
 package views;
 
-/**
- * Created by aniruddha on 12/10/16.
- */
-public class IndexView {
+import spark.ModelAndView;
+
+public class TemplateView extends View implements MustacheRenderable {
+
+    @Override
+    public String render() {
+        return mustacheTemplateEngine.render(new ModelAndView(this.getContext(), this.getTemplateName()));
+    }
+
 }

@@ -1,4 +1,4 @@
-import views.Views;
+import views.IndexView;
 
 import static spark.Spark.*;
 
@@ -9,6 +9,6 @@ public class Main {
         port(9000);
         staticFiles.location("/public");
 
-//        get("/:name/", (req, res) -> Views.renderHelloWorld(req));
+        get("/:name/", (req, res) -> new IndexView().render());
     }
 }

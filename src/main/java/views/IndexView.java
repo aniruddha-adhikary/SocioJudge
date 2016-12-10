@@ -1,7 +1,8 @@
 package views;
 
-/**
- * Created by aniruddha on 12/10/16.
- */
-public class IndexView {
+public class IndexView extends TemplateView {
+    public IndexView() {
+        this.setTemplateName("index.mustache");
+        this.getContext().put("name", "Aniruddha Adhikary");
+    }
 }

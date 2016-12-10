@@ -2,6 +2,6 @@ package views;
 
 import spark.template.mustache.MustacheTemplateEngine;
 
-public interface Renderable {
+public interface MustacheRenderable {
     public static MustacheTemplateEngine mustacheTemplateEngine = new MustacheTemplateEngine();
 }
