@@ -3,7 +3,7 @@ import views.IndexView;
 import java.awt.*;
 import java.net.URI;
 
-import social.FacebookInteractor;
+import views.social.FacebookInteractor;
 import static spark.Spark.*;
 
 public class Main {
@@ -13,8 +13,9 @@ public class Main {
         port(9000);
         staticFiles.location("/public");
 
-        get("/", (req, res) -> new IndexView().render());
+        get("/", (req, res) -> new IndexView().render(req));
         get("/api/getCode/", (req, res) -> FacebookInteractor.getCode());
+        get("/api/verifyCode/:code", (req, res) -> FacebookInteractor.getAccessToken(req.params("code")));
 
         // Launch Browser when application is launched.
         if (Desktop.isDesktopSupported()) {

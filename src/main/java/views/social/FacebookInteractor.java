@@ -1,4 +1,4 @@
-package social;
+package views.social;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -10,7 +10,25 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URI;
 
+
 public class FacebookInteractor {
+
+    public static String getAccessToken(String code) {
+        try {
+            HttpResponse httpResponse = Unirest.post("https://graph.facebook.com/v2.6/device/login_status")
+                    .field("access_token", "1251959248183083|470cb214983d9f26e46d0eb247b073ad")
+                    .field("code", code)
+                    .asJson();
+
+            System.out.println(httpResponse.getBody().toString());
+
+            JSONObject jsonObject = new JSONObject(httpResponse.getBody().toString());
+            return jsonObject.getString("access_token");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
 
     public static String getCode() {
         try {
@@ -35,7 +53,7 @@ public class FacebookInteractor {
                 Desktop.getDesktop().browse(new URI(verificationUri));
             } catch (Exception e) {}
 
-            return "success";
+            return code;
 
         } catch (UnirestException e) {
             e.printStackTrace();

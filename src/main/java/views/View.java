@@ -1,6 +1,7 @@
 package views;
 
 import spark.ModelAndView;
+import spark.Request;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,5 +25,5 @@ public abstract class View {
         return context;
     }
 
-    public abstract String render();
+    public abstract String render(Request request);
 }
