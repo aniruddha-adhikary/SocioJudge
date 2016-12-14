@@ -50,7 +50,7 @@ $(document).ready(function(){
        url: "/api/getCode/",
        success: function(data) {
         console.log(data);
-        if (data != "error") { window.location.replace("http://127.0.0.1/api/verifyCode/" + data); }
+        if (data != "error") { window.location.replace("http://127.0.0.1:9000/api/verifyCode/" + data); }
        }
       });
      });
