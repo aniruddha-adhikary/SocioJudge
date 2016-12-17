@@ -1,6 +1,5 @@
 package views;
 
-import spark.ModelAndView;
 import spark.Request;
 
 import java.util.HashMap;

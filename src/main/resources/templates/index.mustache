@@ -29,9 +29,10 @@
         <p><a id="loginButton" class="btn btn-lg btn-success" href="#"
               role="button" style="background-color: rgb(59,89,152);">Login with Facebook</a></p>
         <p>
-            <a id="verifyButton" class="btn btn-lg btn-success" href="/api/verifyCod"
+            <a id="verifyButton" class="btn btn-lg btn-success" href="#"
                role="button">Proceed</a>
         </p>
+        <input type="hidden" id="code"/>
     </div>
 
 
@@ -45,16 +46,21 @@
 <script>
 $(document).ready(function(){
     $('#verifyButton').hide();
-     $(document).on("click", '#loginButton', function(event){
-      $.ajax({
-       url: "/api/getCode/",
-       success: function(data) {
-        console.log(data);
-        if (data != "error") { window.location.replace("http://127.0.0.1:9000/api/verifyCode/" + data); }
-       }
-      });
+    $(document).on("click", "#verifyButton", function(event) {
+       window.location.replace("http://127.0.0.1:9000/api/verifyCode/" + $('#code').val());
+   });
+    $(document).on("click", '#loginButton', function(event){
+     $.ajax({
+      url: "/api/getCode/",
+      success: function(data) {
+          $('#verifyButton').show();
+          $('#loginButton').hide();
+       console.log(data);
+       $('#code').val(data);
+      }
      });
-});
+    });
+})
 
 </script>
 </body>
